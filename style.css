@@ -1,0 +1,234 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color:black;
+  color: white;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+img {
+  display:inline-block;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+
+/* nav css */
+header {
+  background-color:black;
+  border-bottom: 2px solid #e94560;
+  position: sticky;
+  top: 0;
+}
+
+nav {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+}
+.name {
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+.nav-ul {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+}
+.nav-ul a {
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: border-color .3s;
+}
+.nav-ul a:hover,
+.nav-ul a.active {
+  border-bottom-color: #e94560;
+  color: #e94560;
+}
+
+/* info css */
+.info {
+  max-width: inherit;
+  margin:auto;
+  text-align: center;
+  padding: 80px 20px;
+  background-image: url("banner.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+
+}
+.info p {
+  margin-bottom: 10px;
+  color: white;
+}
+.button {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 40px;
+  background: #e94560;
+  color: #fff;
+  font-weight: bold;
+  transition: background .3s, transform .3s;
+}
+.button:hover {
+  background: #c73650;
+  transform: translateY(-3px);
+}
+
+
+/* event card css */
+.event {
+  max-width: 960px;
+  margin: auto;
+  padding: 60px 20px;
+}
+.event h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.card {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  overflow: hidden;
+  transition: transform .3s, border-color .3s;
+}
+.card:hover {
+  transform: translateY(-6px);
+  border-color: #e94560;
+}
+.card h3 {
+  padding: 16px 16px 0;
+  font-size: 1.15rem;
+  color: #e94560;
+}
+.card p {
+  padding: 8px 16px 16px;
+  color: #bbb;
+  font-size: .95rem;
+}
+
+
+/*  player css */
+.video {
+  max-width: 800px;
+  margin: auto;
+  padding: 60px 20px;
+  text-align: center;
+}
+.video h2 {
+  font-size: 2.3rem;
+  margin-bottom: 24px;
+}
+.player {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 比例 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px; 
+}
+
+.player iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+/* footer css */
+footer {
+  background-color:darkslateblue  ;
+  border-top: 2px solid;
+  text-align: center;
+  padding: 40px 20px 20px;
+  margin-top: 40px;
+}
+footer h4 {
+  margin-bottom: 10px;
+}
+footer p {
+  color: aliceblue;
+  font-size: .9rem;
+}
+.copyright {
+  margin-top: 20px;
+  font-size: .8rem;
+}
+
+
+/* join from css */
+.join-section {
+  max-width: 960px;
+  margin: auto;
+  padding: 60px;
+}
+  
+.join-form h3 {
+  text-align: center;
+  font-size: 1.9rem;
+  color: white;
+  margin-bottom: 30px;
+}
+.form-group {
+  margin-bottom: 24px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #ddd;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 14px 16px;
+  background-color: #333;
+  border: 1px solid #555;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: border-color .3s;
+}
+
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+}
+.checkbox-item input {
+  width: auto;
+}
+.join-form .button {
+  width: 100%;
+  margin-top: 10px;
+  font-size: 1.1rem;
+  padding: 16px;
+}
+.join-form p.note {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: 30px;
+}
