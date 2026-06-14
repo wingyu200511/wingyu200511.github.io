@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字點號移除器（單行版）</title>
+    <style>
+        body {
+            font-family: "Microsoft JhengHei", Arial, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 600px;
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            color: #4a5568;
+        }
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 15px;
+            resize: vertical;
+            margin-bottom: 20px;
+            background-color: #fff;
+            transition: border-color 0.2s;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #4caf50;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            flex: 1;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .btn-convert {
+            background-color: #4caf50;
+            color: white;
+        }
+        .btn-convert:hover {
+            background-color: #43a047;
+        }
+        .btn-copy {
+            background-color: #008cba;
+            color: white;
+        }
+        .btn-copy:hover {
+            background-color: #007bb5;
+        }
+        .toast {
+            text-align: center;
+            color: #e67e22;
+            font-weight: bold;
+            height: 20px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Text Dot Remover</h2>
+    
+    <label for="inputText">請輸入或貼上原始文字：</label>
+    <textarea id="inputText" placeholder="在這裡輸入帶有 . 或換行的文字..."></textarea>
+    
+    <div class="btn-group">
+        <button class="btn-convert" onclick="processText()">移除點號並合併成單行</button>
+        <button class="btn-copy" onclick="copyToClipboard()">複製結果</button>
+    </div>
+    
+    <div id="toastMessage" class="toast"></div>
+    
+    <label for="outputText">處理後的文字（同一行）：</label>
+    <textarea id="outputText" placeholder="處理後的結果會顯示在這裡..." readonly></textarea>
+</div>
+
+<script>
+    function processText() {
+        const inputTextArea = document.getElementById('inputText');
+        const outputTextArea = document.getElementById('outputText');
+        const toast = document.getElementById('toastMessage');
+        
+        let currentText = inputTextArea.value;
+        
+        // 1. 移除所有半形點 (.) 和全形點 (．)
+        let cleanedText = currentText.replace(/[.\uFF0E]/g, '');
+        
+        // 2. 移除所有換行符號（\r 和 \n），使文字強迫留在同一行
+        cleanedText = cleanedText.replace(/[\r\n]+/g, '');
+        
+        outputTextArea.value = cleanedText;
+        toast.innerText = "點號與換行已成功移除！";
+        setTimeout(() => { toast.innerText = ""; }, 2000);
+    }
+
+    function copyToClipboard() {
+        const outputTextArea = document.getElementById('outputText');
+        const toast = document.getElementById('toastMessage');
+        
+        if (!outputTextArea.value) {
+            toast.innerText = "沒有文字可以複製！";
+            setTimeout(() => { toast.innerText = ""; }, 2000);
+            return;
+        }
+        
+        outputTextArea.select();
+        outputTextArea.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(outputTextArea.value);
+        
+        toast.innerText = "已成功複製單行文字！";
+        setTimeout(() => { toast.innerText = ""; }, 2000);
+    }
+</script>
+
+</body>
+</html>
